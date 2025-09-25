@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bienvenida</title>
   <style>
-    /* Fondo animado oscuro */
+    /* 🎨 Fondo animado oscuro */
     body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -35,6 +35,7 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
+    /* 🎨 Botones */
     .btn {
       display: inline-block;
       margin: 5px;
@@ -55,7 +56,7 @@
       transform: scale(1.1);
     }
 
-    /* Contenedor de cursos */
+    /* 🎨 Contenedor de cursos */
     #cursosContainer {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -65,7 +66,7 @@
     }
 
     .cursoCard {
-      background: rgba(0,0,0,0.7);
+      background: rgba(0, 0, 0, 0.7);
       padding: 20px;
       border-radius: 15px;
       box-shadow: 0 0 15px #00ffcc, 0 0 30px #00ffff;
@@ -77,6 +78,7 @@
       box-shadow: 0 0 25px #00ffcc, 0 0 50px #00ffff;
     }
 
+    /* 🎨 Enlaces */
     a {
       display: inline-block;
       margin-top: 20px;
@@ -92,25 +94,27 @@
 <body>
   <h1 id="mensaje"></h1>
 
-  <!-- Contenedor de cursos existentes -->
+  <!-- 📚 Contenedor de cursos -->
   <div id="cursosContainer"></div>
 
+  <!-- 🔒 Cerrar sesión -->
   <a href="index.html" onclick="cerrarSesion()">Cerrar Sesión</a>
 
   <script>
-    // Verificar usuario activo
+    // ✅ Verificar usuario activo
     const usuarioActivo = localStorage.getItem("usuarioActivo");
-    if(!usuarioActivo){
+    if (!usuarioActivo) {
       window.location.href = "login.html";
     } else {
       document.getElementById("mensaje").innerText = "Bienvenido, " + usuarioActivo + " 🎉";
     }
 
-    function cerrarSesion(){
+    // 🔒 Cerrar sesión
+    function cerrarSesion() {
       localStorage.removeItem("usuarioActivo");
     }
 
-    // Mostrar cursos guardados en localStorage
+    // 📚 Mostrar cursos guardados en localStorage
     function mostrarCursos() {
       const container = document.getElementById("cursosContainer");
       container.innerHTML = "";
@@ -119,16 +123,20 @@
       cursos.forEach((curso, index) => {
         const card = document.createElement("div");
         card.className = "cursoCard";
-        // 👇 Quité el <h3>${curso}</h3> que mostraba el "gaaaa"
+
         card.innerHTML = `
           <button class="btn" onclick="abrirCurso(${index})">📚 Base De Datos II</button>
-          <button class="btn" onclick="eliminarCurso(${index})" style="background:#ff3b3b; color:#fff; box-shadow:0 0 10px #ff3b3b,0 0 20px #ff6b6b;">Eliminar</button>
+          <button class="btn" onclick="eliminarCurso(${index})"
+            style="background:#ff3b3b; color:#fff; box-shadow:0 0 10px #ff3b3b,0 0 20px #ff6b6b;">
+            Eliminar
+          </button>
         `;
+
         container.appendChild(card);
       });
     }
 
-    // Eliminar curso por índice
+    // 🗑️ Eliminar curso por índice
     function eliminarCurso(index) {
       let cursos = JSON.parse(localStorage.getItem("cursos")) || [];
       cursos.splice(index, 1);
@@ -136,13 +144,14 @@
       mostrarCursos();
     }
 
-    // Abrir curso (redirige a basedatos2.html)
+    // 🚀 Abrir curso (redirige a basedatos2.html)
     function abrirCurso(index) {
       window.location.href = "basedatos2.html";
     }
 
-    // Inicializar cursos al cargar
+    // ▶️ Inicializar cursos al cargar
     mostrarCursos();
   </script>
 </body>
 </html>
+
