@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de Configuración - Admin</title>
+  <style>
+    /* 🎨 Paleta Neon UI */
+    :root {
+      --color-fondo1: #000000; 
+      --color-fondo2: #0d0d0d; 
+      --color-fondo3: #1a1a1a; 
+      --color-fondo4: #000000;
+      --color-primario: #00ffcc; 
+      --color-brillo: #00ffff; 
+      --color-texto: #f5f5f5; 
+      --color-secundario: #ccc;
+      --color-alerta: #ff3b3b; 
+      --color-alerta-hover: #cc2b2b;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+      background: linear-gradient(-45deg, var(--color-fondo1), var(--color-fondo2), var(--color-fondo3), var(--color-fondo4)); 
+      background-size: 400% 400%; 
+      animation: gradientMove 12s ease infinite; 
+      margin: 0;
+      color: var(--color-texto); 
+      min-height: 100vh; 
+      display: flex; 
+      flex-direction: column; 
+      align-items: center;
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50% }
+      50% { background-position: 100% 50% }
+      100% { background-position: 0% 50% }
+    }
+
+    /* 🔹 Encabezado */
+    header {
+      width: 100%;
+      background: rgba(0,0,0,0.7); 
+      padding: 30px; 
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0,255,200,0.5);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+      color: var(--color-primario); 
+      text-shadow: 0 0 15px var(--color-primario), 0 0 30px var(--color-brillo); 
+      animation: glow 3s infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px var(--color-primario), 0 0 20px var(--color-primario); } 
+      to   { text-shadow: 0 0 25px var(--color-primario), 0 0 40px var(--color-brillo); }
+    }
+
+    /* 🔹 Navegación */
+    nav {
+      margin: 20px 0;
+      text-align: center;
+    }
+
+    nav a {
+      margin: 0 10px; 
+      padding: 10px 20px; 
+      color: var(--color-primario); 
+      font-weight: bold; 
+      text-decoration: none; 
+      border: 2px solid var(--color-primario); 
+      border-radius: 30px; 
+      transition: all 0.4s ease; 
+      box-shadow: 0 0 10px rgba(0,255,200,0.4);
+    }
+
+    nav a:hover {
+      background: var(--color-primario); 
+      color: #000; 
+      box-shadow: 0 0 25px rgba(0,255,200,1); 
+      transform: scale(1.1);
+    }
+
+    /* 🔹 Contenido principal */
+    main {
+      flex: 1; 
+      width: 90%;
+      max-width: 1000px;
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+      gap: 25px; 
+      margin-bottom: 30px;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); } 
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .card {
+      background: rgba(0,0,0,0.7); 
+      padding: 25px; 
+      border-radius: 15px; 
+      box-shadow: 0 0 15px rgba(0,255,200,0.3); 
+      text-align: center; 
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: scale(1.05); 
+      box-shadow: 0 0 20px var(--color-primario), 0 0 40px var(--color-brillo);
+    }
+
+    .card h2 {
+      margin-bottom: 15px;
+      color: var(--color-primario); 
+      text-shadow: 0 0 10px var(--color-primario);
+    }
+
+    input {
+      width: 100%; 
+      padding: 10px; 
+      margin-bottom: 15px; 
+      border-radius: 5px; 
+      border: 1px solid var(--color-primario); 
+      background: rgba(0,0,0,0.6); 
+      color: var(--color-texto);
+    }
+
+    /* 🔹 Botones */
+    .btn {
+      display: inline-block; 
+      padding: 10px 20px; 
+      background: var(--color-primario); 
+      color: black; 
+      border-radius: 8px; 
+      font-weight: bold; 
+      text-decoration: none; 
+      transition: 0.3s; 
+      box-shadow: 0 0 10px var(--color-primario), 0 0 20px var(--color-brillo); 
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: var(--color-brillo); 
+      box-shadow: 0 0 20px var(--color-primario), 0 0 40px var(--color-brillo); 
+      transform: scale(1.1);
+    }
+
+    .btn.eliminar {
+      background: var(--color-alerta);
+      color: #fff;
+      box-shadow: 0 0 10px var(--color-alerta), 0 0 20px var(--color-alerta-hover);
+    }
+
+    .btn.eliminar:hover {
+      background: var(--color-alerta-hover);
+      box-shadow: 0 0 20px var(--color-alerta), 0 0 40px var(--color-alerta-hover);
+    }
+
+    .acciones {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 10px;
+    }
+
+    .vistaCurso {
+      margin-top: 15px;
+    }
+
+    .vistaCurso iframe {
+      width: 100%;
+      height: 200px;
+      border: 2px solid var(--color-primario);
+      border-radius: 10px;
+      box-shadow: 0 0 15px var(--color-primario), 0 0 25px var(--color-brillo);
+    }
+
+    /* 🔹 Pie de página */
+    footer {
+      width: 100%;
+      background: rgba(0,0,0,0.85); 
+      text-align: center; 
+      padding: 15px; 
+      font-size: 0.9rem; 
+      color: var(--color-secundario); 
+      box-shadow: 0 0 10px var(--color-primario);
+    }
+  </style>
+</head>
+<body>
+  <!-- 🔹 Encabezado -->
+  <header>
+    <h1>⚙ Configuración del Sistema</h1>
+  </header>
+
+  <!-- 🔹 Navegación -->
+  <nav>
+    <a href="admin.html">Panel Admin</a>
+    <a href="usuarios.html">Usuarios</a>
+    <a href="index.html" class="btn">Cerrar Sesión</a>
+  </nav>
+
+  <!-- 🔹 Contenido principal -->
+  <main>
+    <!-- Crear Curso -->
+    <div class="card">
+      <h2>Crear Nuevo Curso</h2>
+      <label for="nombreCurso" style="color:var(--color-primario);">Nombre del curso:</label>
+      <input type="text" id="nombreCurso" placeholder="Ingrese el nombre del curso">
+      <button class="btn" onclick="crearCurso()">Crear Curso</button>
+    </div>
+
+    <!-- Cursos Existentes -->
+    <div class="card" style="grid-column:1/-1;">
+      <h2>Cursos Existentes</h2>
+      <div id="cursosContainer" 
+           style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:15px; margin-top:15px;">
+      </div>
+    </div>
+  </main>
+
+  <!-- 🔹 Pie de página -->
+  <footer>
+    © 2025 - Configuración Admin | Sistema Neon UI
+  </footer>
+
+  <!-- 🔹 Scripts -->
+  <script>
+    // Mostrar cursos guardados
+    function mostrarCursos() {
+      const container = document.getElementById("cursosContainer");
+      container.innerHTML = "";
+      const cursos = JSON.parse(localStorage.getItem("cursos")) || [];
+
+      cursos.forEach((curso, index) => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `
+          <div class="acciones">
+            <button class="btn" onclick="abrirCurso(this, '${curso}')">📚 Abrir</button>
+            <button class="btn eliminar" onclick="eliminarCurso(${index})">Eliminar</button>
+          </div>
+          <div class="vistaCurso" style="display:none;"></div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // Crear curso
+    function crearCurso() {
+      const nombre = document.getElementById("nombreCurso").value.trim();
+      if (nombre === "") {
+        alert("Ingresa un nombre de curso");
+        return;
+      }
+      let cursos = JSON.parse(localStorage.getItem("cursos")) || [];
+      cursos.push(nombre);
+      localStorage.setItem("cursos", JSON.stringify(cursos));
+      alert("Curso '" + nombre + "' creado correctamente!");
+      document.getElementById("nombreCurso").value = "";
+      mostrarCursos();
+    }
+
+    // Eliminar curso
+    function eliminarCurso(index) {
+      let cursos = JSON.parse(localStorage.getItem("cursos")) || [];
+      cursos.splice(index, 1);
+      localStorage.setItem("cursos", JSON.stringify(cursos));
+      mostrarCursos();
+    }
+
+    // Abrir curso en vista previa
+    function abrirCurso(boton, nombre) {
+      const card = boton.closest(".card");
+      const vista = card.querySelector(".vistaCurso");
+
+      if (vista.style.display === "none" || vista.innerHTML === "") {
+        vista.innerHTML = `<iframe src="basedatos2.html"></iframe>`;
+        vista.style.display = "block";
+        boton.textContent = "🔽 Cerrar";
+      } else {
+        vista.innerHTML = "";
+        vista.style.display = "none";
+        boton.textContent = "📚 Abrir";
+      }
+    }
+
+    // Cargar cursos al iniciar
+    window.onload = mostrarCursos;
+  </script>
+</body>
+</html>

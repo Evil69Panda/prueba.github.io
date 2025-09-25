@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel Administrador</title>
+  <style>
+    :root {
+      --color-fondo1: #000000;
+      --color-fondo2: #0d0d0d;
+      --color-fondo3: #1a1a1a;
+      --color-fondo4: #000000;
+
+      --color-primario: #00ffcc;
+      --color-brillo: #00ffff;
+      --color-texto: #f5f5f5;
+      --color-secundario: #ccc;
+
+      --color-alerta: #ff3b3b;
+      --color-alerta-hover: #cc2b2b;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(-45deg, var(--color-fondo1), var(--color-fondo2), var(--color-fondo3), var(--color-fondo4));
+      background-size: 400% 400%;
+      animation: gradientMove 12s ease infinite;
+      margin: 0;
+      color: var(--color-texto);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+    }
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    header {
+      background: rgba(0, 0, 0, 0.7);
+      padding: 30px;
+      box-shadow: 0 4px 20px rgba(0,255,200,0.5);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+      color: var(--color-primario);
+      text-shadow: 0 0 15px var(--color-primario), 0 0 30px var(--color-brillo);
+      animation: glow 3s infinite alternate;
+    }
+    @keyframes glow {
+      from { text-shadow: 0 0 10px var(--color-primario), 0 0 20px var(--color-primario); }
+      to   { text-shadow: 0 0 25px var(--color-primario), 0 0 40px var(--color-brillo); }
+    }
+    nav {
+      margin-top: 15px;
+    }
+    nav a {
+      margin: 0 15px;
+      padding: 10px 20px;
+      color: var(--color-primario);
+      font-weight: bold;
+      text-decoration: none;
+      border: 2px solid var(--color-primario);
+      border-radius: 30px;
+      transition: all 0.4s ease;
+      box-shadow: 0 0 10px rgba(0,255,200,0.4);
+    }
+    nav a:hover {
+      background: var(--color-primario);
+      color: #000;
+      box-shadow: 0 0 25px rgba(0,255,200,1);
+      transform: scale(1.1);
+    }
+    main {
+      flex: 1;
+      padding: 60px 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      animation: fadeIn 2s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .card {
+      background: rgba(0, 0, 0, 0.7);
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0, 255, 200, 0.3);
+      text-align: center;
+      transition: 0.3s;
+    }
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px var(--color-primario), 0 0 40px var(--color-brillo);
+    }
+    .card h2 {
+      margin-bottom: 10px;
+      color: var(--color-primario);
+      text-shadow: 0 0 10px var(--color-primario);
+    }
+    .card p {
+      font-size: 0.95rem;
+      color: var(--color-secundario);
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 20px;
+      background: var(--color-primario);
+      color: black;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+      box-shadow: 0 0 10px var(--color-primario), 0 0 20px var(--color-brillo);
+    }
+    .btn:hover {
+      background: var(--color-brillo);
+      box-shadow: 0 0 20px var(--color-primario), 0 0 40px var(--color-brillo);
+      transform: scale(1.1);
+    }
+    .logout {
+      background: var(--color-alerta);
+      color: white !important;
+      box-shadow: 0 0 10px var(--color-alerta), 0 0 20px var(--color-alerta);
+    }
+    .logout:hover {
+      background: var(--color-alerta-hover);
+      box-shadow: 0 0 20px var(--color-alerta), 0 0 40px var(--color-alerta);
+    }
+    footer {
+      background: rgba(0, 0, 0, 0.85);
+      text-align: center;
+      padding: 15px;
+      font-size: 0.9rem;
+      color: var(--color-secundario);
+      box-shadow: 0 0 10px var(--color-primario);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>⚡ Panel de Administración</h1>
+  </header>
+
+  <nav>
+    <a href="usuarios.html">Usuarios</a>
+    <a href="Configuracion.html">Configuración</a>
+    <a href="index.html" class="logout">Cerrar Sesión</a>
+  </nav>
+
+  <main>
+    <div class="card">
+      <h2>👤 Gestión de Usuarios</h2>
+      <p>Crear, editar o eliminar cuentas de estudiantes y administradores.</p>
+      <a href="usuarios.html" class="btn">Entrar</a>
+    </div>
+
+    <div class="card">
+      <h2>⚙ Configuración</h2>
+      <p>Ajusta opciones generales del sistema y permisos de acceso.</p>
+      <a href="Configuracion.html" class="btn">Configurar</a>
+    </div>
+  </main>
+
+  <footer>
+    © 2025 - Panel Administrador | Sistema Neon UI
+  </footer>
+</body>
+</html>

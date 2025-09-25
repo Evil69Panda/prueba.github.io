@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestión de Usuarios</title>
+  <style>
+    :root {
+      --color-fondo1: #000000;
+      --color-fondo2: #0d0d0d;
+      --color-fondo3: #1a1a1a;
+      --color-fondo4: #000000;
+
+      --color-primario: #00ffcc;
+      --color-brillo: #00ffff;
+      --color-texto: #f5f5f5;
+      --color-secundario: #ccc;
+
+      --color-alerta: #ff3b3b;
+      --color-alerta-hover: #cc2b2b;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(-45deg, var(--color-fondo1), var(--color-fondo2), var(--color-fondo3), var(--color-fondo4));
+      background-size: 400% 400%;
+      animation: gradientMove 12s ease infinite;
+      margin: 0;
+      color: var(--color-texto);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    header {
+      background: rgba(0, 0, 0, 0.85);
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 0 15px var(--color-primario);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+      text-shadow: 0 0 10px var(--color-primario), 0 0 20px var(--color-primario);
+    }
+
+    nav {
+      background: rgba(0, 0, 0, 0.7);
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+      box-shadow: inset 0 0 10px var(--color-primario);
+    }
+
+    nav a {
+      color: var(--color-primario);
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      text-shadow: 0 0 10px var(--color-primario), 0 0 20px var(--color-brillo);
+    }
+
+    main {
+      flex: 1;
+      padding: 30px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: rgba(0,0,0,0.8);
+      box-shadow: 0 0 15px rgba(0, 255, 200, 0.3);
+    }
+
+    th, td {
+      padding: 12px;
+      border: 1px solid var(--color-primario);
+      text-align: center;
+    }
+
+    th {
+      background: var(--color-primario);
+      color: black;
+      text-shadow: 0 0 10px var(--color-primario);
+    }
+
+    tr:hover {
+      background: rgba(0, 255, 200, 0.2);
+    }
+
+    .btn {
+      padding: 6px 12px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    .eliminar {
+      background: var(--color-alerta);
+      color: white;
+      box-shadow: 0 0 10px var(--color-alerta);
+    }
+
+    .eliminar:hover {
+      background: var(--color-alerta-hover);
+    }
+
+    footer {
+      background: rgba(0, 0, 0, 0.85);
+      text-align: center;
+      padding: 15px;
+      font-size: 0.9rem;
+      color: var(--color-secundario);
+      box-shadow: 0 0 10px var(--color-primario);
+    }
+
+    form {
+      margin-bottom: 20px;
+      background: rgba(0,0,0,0.7);
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px var(--color-primario);
+    }
+
+    input {
+      padding: 8px;
+      margin: 5px;
+      border-radius: 6px;
+      border: none;
+    }
+
+    button {
+      padding: 8px 15px;
+      border-radius: 6px;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      background: var(--color-primario);
+      color: black;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: var(--color-brillo);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>👤 Gestión de Usuarios</h1>
+  </header>
+
+  <nav>
+    <a href="admin.html">Volver al Panel</a>
+  </nav>
+
+  <main>
+    <h2>Buscar Usuario</h2>
+
+    <!-- Formulario para buscar usuario -->
+    <form id="formBuscar">
+      <input type="text" id="buscarUsuario" placeholder="Ingrese nombre de usuario" required>
+      <button type="submit">Buscar Usuario</button>
+    </form>
+
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Usuario</th>
+          <th>Rol</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody id="tablaUsuarios"></tbody>
+    </table>
+  </main>
+
+  <footer>
+    © 2025 - Gestión de Usuarios | Sistema Neon UI
+  </footer>
+
+  <script>
+    let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+
+    function renderUsuarios(lista) {
+      const tbody = document.getElementById("tablaUsuarios");
+      tbody.innerHTML = "";
+      if(lista.length === 0){
+        tbody.innerHTML = `<tr><td colspan="4">No se encontraron usuarios</td></tr>`;
+      } else {
+        lista.forEach((usuario, index) => {
+          tbody.innerHTML += `
+            <tr>
+              <td>${index + 1}</td>
+              <td>${usuario}</td>
+              <td>estudiante</td>
+              <td>
+                <button class="btn eliminar" onclick="eliminarUsuario(${index})">Eliminar</button>
+              </td>
+            </tr>
+          `;
+        });
+      }
+    }
+
+    function eliminarUsuario(index) {
+      usuarios.splice(index, 1);
+      localStorage.setItem("usuarios", JSON.stringify(usuarios));
+      renderUsuarios(usuarios);
+    }
+
+    document.getElementById("formBuscar").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const busqueda = document.getElementById("buscarUsuario").value.trim().toLowerCase();
+      const resultados = usuarios.filter(u => u.toLowerCase().includes(busqueda));
+      renderUsuarios(resultados);
+    });
+
+    // Renderizar todos al inicio
+    renderUsuarios(usuarios);
+  </script>
+</body>
+</html>

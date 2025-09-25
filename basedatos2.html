@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Base de Datos 2</title>
+  <style>
+    /* Fondo animado */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(-45deg, #000000, #0d0d0d, #1a1a1a, #000000);
+      background-size: 400% 400%;
+      animation: gradientBG 10s ease infinite;
+      color: #f5f5f5;
+      text-align: center;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Encabezado */
+    header {
+      background: rgba(0,0,0,0.7);
+      padding: 20px;
+      font-size: 2rem;
+      font-weight: bold;
+      color: #00ffcc;
+      text-shadow: 0 0 15px #00ffcc, 0 0 30px #00ffff;
+      animation: glow 3s infinite alternate;
+      box-shadow: 0 4px 20px rgba(0,255,200,0.5);
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc; }
+      to   { text-shadow: 0 0 25px #00ffcc, 0 0 40px #00ffff; }
+    }
+
+    /* Grid de carpetas */
+    main {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      padding: 40px;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .carpeta {
+      background: rgba(20,20,20,0.9);
+      border: 2px solid #00ffcc;
+      border-radius: 15px;
+      padding: 20px;
+      transition: 0.3s;
+      box-shadow: 0 0 10px rgba(0,255,200,0.4);
+    }
+
+    .carpeta:hover {
+      border-color: #00ffff;
+      box-shadow: 0 0 25px #00ffcc;
+      transform: scale(1.05);
+    }
+
+    .carpeta a {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 8px 14px;
+      font-size: 0.9rem;
+      color: #00ffcc;
+      border: 1px solid #00ffcc;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.3s;
+      box-shadow: 0 0 10px rgba(0,255,200,0.4);
+    }
+
+    .carpeta a:hover {
+      background: #00ffcc;
+      color: #000;
+      box-shadow: 0 0 20px rgba(0,255,200,1);
+      transform: scale(1.05);
+    }
+
+    /* Botón volver */
+    .volver {
+      display: inline-block;
+      margin: 40px auto;
+      padding: 12px 24px;
+      background: rgba(0,0,0,0.8);
+      color: #00ffcc;
+      border: 2px solid #00ffcc;
+      border-radius: 30px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 0 15px rgba(0,255,200,0.5);
+      transition: all 0.3s;
+    }
+
+    .volver:hover {
+      background: #00ffcc;
+      color: #000;
+      transform: scale(1.1);
+      box-shadow: 0 0 30px rgba(0,255,200,1);
+    }
+  </style>
+</head>
+<body>
+  <header>📂 Base de Datos 2</header>
+  <main>
+    <div class="carpeta">📁 Semana 1 <div><a href="https://github.com/Evil69Panda/prueba.github.io/tree/main/Semana1" target="_blank">📂 Ver en GitHub</a></div></div>
+    <div class="carpeta">📁 Semana 2 <div><a href="https://github.com/Evil69Panda/prueba.github.io/tree/main/Semana2" target="_blank">📂 Ver en GitHub</a></div></div>
+    <div class="carpeta">📁 Semana 3 <div><a href="https://github.com/Evil69Panda/prueba.github.io/tree/main/Semana3" target="_blank">📂 Ver en GitHub</a></div></div>
+    <div class="carpeta">📁 Semana 4 <div><a href="https://github.com/Evil69Panda/prueba.github.io/tree/main/Semana4" target="_blank">📂 Ver en GitHub</a></div></div>
+    <div class="carpeta">📁 Semana 5 <div><a href="https://github.com/Evil69Panda/prueba.github.io/tree/main/Semana5" target="_blank">📂 Ver en GitHub</a></div></div>
+    <div class="carpeta">📁 Semana 6 <div><a href="https://github.com/Evil69Panda/prueba.github.io/tree/main/Semana6" target="_blank">📂 Ver en GitHub</a></div></div>
+    <div class="carpeta">📁 Semana 7 <div><a href="https://github.com/Evil69Panda/prueba.github.io/tree/main/Semana7" target="_blank">📂 Ver en GitHub</a></div></div>
+    <div class="carpeta">📁 Semana 8 <div><a href="https://github.com/Evil69Panda/prueba.github.io/tree/main/Semana8" target="_blank">📂 Ver en GitHub</a></div></div>
+    <div class="carpeta">📁 Semana 9 <div><a href="https://github.com/Evil69Panda/prueba.github.io/tree/main/Semana9" target="_blank">📂 Ver en GitHub</a></div></div>
+    <div class="carpeta">📁 Semana 10 <div><a href="https://github.com/Evil69Panda/prueba.github.io/tree/main/Semana10" target="_blank">📂 Ver en GitHub</a></div></div>
+    <div class="carpeta">📁 Semana 11 <div><a href="https://github.com/Evil69Panda/prueba.github.io/tree/main/Semana11" target="_blank">📂 Ver en GitHub</a></div></div>
+    <div class="carpeta">📁 Semana 12 <div><a href="https://github.com/Evil69Panda/prueba.github.io/tree/main/Semana12" target="_blank">📂 Ver en GitHub</a></div></div>
+    <div class="carpeta">📁 Semana 13 <div><a href="https://github.com/Evil69Panda/prueba.github.io/tree/main/Semana13" target="_blank">📂 Ver en GitHub</a></div></div>
+    <div class="carpeta">📁 Semana 14 <div><a href="https://github.com/Evil69Panda/prueba.github.io/tree/main/Semana14" target="_blank">📂 Ver en GitHub</a></div></div>
+    <div class="carpeta">📁 Semana 15 <div><a href="https://github.com/Evil69Panda/prueba.github.io/tree/main/Semana15" target="_blank">📂 Ver en GitHub</a></div></div>
+    <div class="carpeta">📁 Semana 16 <div><a href="https://github.com/Evil69Panda/prueba.github.io/tree/main/Semana16" target="_blank">📂 Ver en GitHub</a></div></div>
+  </main>
+
+  <!-- Botón volver -->
+  <div>
+    <a href="bienvenida.html" class="volver">⬅ Volver</a>
+  </div>
+</body>
+</html>
